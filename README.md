@@ -57,3 +57,12 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+# App Perpustakaan
+
+Aplikasi berbasis web sederhana yang bertujuan untuk mempermudah manajemen data perpustakaan, seperti pengelolaan inventaris buku, data anggota, dan pencatatan sirkulasi peminjaman.
+
+## Cara Menjalankan Project secara Lokal
+1. Clone repository ini ke dalam folder web server lokal (misalnya `htdocs` untuk XAMPP atau `www` untuk Laragon).
+2. Nyalakan service Apache dan MySQL (jika menggunakan database).
+3. Buka browser dan akses alamat `http://localhost/app-perpustakaan`.
