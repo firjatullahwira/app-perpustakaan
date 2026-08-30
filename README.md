@@ -66,3 +66,6 @@ Aplikasi berbasis web sederhana yang bertujuan untuk mempermudah manajemen data 
 1. Clone repository ini ke dalam folder web server lokal (misalnya `htdocs` untuk XAMPP atau `www` untuk Laragon).
 2. Nyalakan service Apache dan MySQL (jika menggunakan database).
 3. Buka browser dan akses alamat `http://localhost/app-perpustakaan`.
+
+### Cara aktivasi
+1. abcdefg
