@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Route;
+use App\Http\Requests\StoreMemberRequest;
 use Illuminate\Http\Request;
+
+Route::resource('members', MemberController::class);
 
 class MemberController extends Controller
 {
@@ -13,19 +16,33 @@ class MemberController extends Controller
     ];
     public function index()
     {
-       $members = $this->members;
+       $members = [
+            [
+                'id' => 1,
+                'nama' => 'Andi Pratama',
+                'nim' => '312560001',
+                'email' => 'andi@student.pens.ac.id',
+                'nomor_telepon' => '081234567890',
+                'alamat' => 'Surabaya',
+                'status' => 'Aktif'
+            ],
+            [
+                'id' => 2,
+                'nama' => 'Siti Aminah',
+                'nim' => '312560002',
+                'email' => 'siti@student.pens.ac.id',
+                'nomor_telepon' => '089876543210',
+                'alamat' => 'Sidoarjo',
+                'status' => 'Aktif'
+            ]
+        ];
 
         return view('members.index', compact('members'));
     }
 
     public function create()
     {
-        return 'MemberController@create';
-    }
-
-    public function store(Request $request)
-    {
-        return 'MemberController@store';
+        return view('Membercreate');
     }
 
     public function show(string $id)
@@ -46,5 +63,10 @@ class MemberController extends Controller
     public function destroy(string $id)
     {
         return "MemberController@destroy, id: {$id}";
+    }
+
+    public function store(StoreMemberRequest $request)
+    {
+        return redirect()->route('members.index')->with('success', 'Data anggota berhasil ditambahkan!');
     }
 }
