@@ -2,35 +2,190 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>@yield('title', 'Perpustakaan Digital Kampus')</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Perpustakaan Digital Kampus</title>
+    
     <style>
-        * { box-sizing: border-box; }
-        body { font-family: sans-serif; margin: 0; color: #1f2937; }
-        nav { background: #1e3a8a; padding: 14px 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; }
-        nav .brand { color: #fff; font-weight: bold; font-size: 18px; }
-        nav ul { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; }
-        nav ul li a { color: #cbd5e1; text-decoration: none; padding: 6px 4px; }
-        nav ul li a.active { color: #fff; font-weight: bold; border-bottom: 2px solid #fff; }
-        main { max-width: 900px; margin: 0 auto; padding: 30px 40px; }
-        table { border-collapse: collapse; width: 100%; margin-top: 16px; }
-        th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; }
-        .alert-success { background: #d1fae5; color: #065f46; padding: 10px 14px; border-radius: 4px; margin-bottom: 16px; }
-        .btn { display: inline-block; padding: 6px 14px; background: #2563eb; color: #fff; text-decoration: none; border-radius: 4px; border: none; cursor: pointer; }
-        form.inline { display: inline; }
-        footer { text-align: center; padding: 20px; color: #6b7280; font-size: 14px; border-top: 1px solid #e5e7eb; margin-top: 40px; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Navigasi / Header */
+        nav {
+            background-color: #1d4ed8;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        nav .logo {
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        nav .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        nav .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Kontainer Utama */
+        main {
+            max-width: 900px;
+            width: 100%;
+            margin: 30px auto;
+            padding: 0 20px;
+            flex: 1;
+        }
+
+        /* Card Container */
+        .card {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border: 1px solid #e5e7eb;
+        }
+
+        .header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        /* Tombol / Button */
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .btn-primary { background-color: #1d4ed8; color: white; }
+        .btn-primary:hover { background-color: #1e40af; }
+
+        .btn-secondary { background-color: #6b7280; color: white; }
+        .btn-secondary:hover { background-color: #4b5563; }
+
+        .btn-warning { background-color: #f59e0b; color: white; }
+        .btn-danger { background-color: #ef4444; color: white; }
+
+        .btn-sm {
+            padding: 4px 8px;
+            font-size: 12px;
+        }
+
+        /* Tabel */
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 12px 10px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #f8fafc;
+            color: #374151;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background-color: #f9fafb;
+        }
+
+        /* Form Input */
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+            font-size: 14px;
+            color: #374151;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #1d4ed8;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+            font-size: 13px;
+            color: #6b7280;
+        }
     </style>
 </head>
 <body>
-    @include('partials.navbar')
+
+    <nav>
+        <a href="{{ url('/') }}" class="logo">📚 PERPUSTAKAAN DIGITAL KAMPUS</a>
+        <div class="nav-links">
+            <a href="{{ url('/books') }}">Buku</a>
+            <a href="{{ url('/categories') }}">Kategori</a>
+            <a href="{{ url('/members') }}">Anggota</a>
+            <a href="{{ url('/loans') }}">Peminjaman</a>
+        </div>
+    </nav>
 
     <main>
-        @include('partials.alert')
-
         @yield('content')
     </main>
 
     <footer>
-        &copy; {{ date('Y') }} Sistem Perpustakaan Digital Kampus
+        &copy; 2026 Sistem Perpustakaan Digital Kampus
     </footer>
+
 </body>
 </html>
