@@ -1,18 +1,50 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <title>Tambah Buku</title>
-    <style>
-        body { font-family: sans-serif; margin: 40px; max-width: 500px; }
-        label { display: block; margin-top: 12px; font-weight: bold; }
-        input, select { width: 100%; padding: 6px; margin-top: 4px; box-sizing: border-box; }
-        .error { color: #b91c1c; font-size: 14px; margin-top: 4px; }
-        .btn { margin-top: 20px; padding: 8px 16px; background: #2563eb; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
-    </style>
-</head>
-<body>
-    <h1>Tambah Buku</h1>
+@extends('layouts.app')
+
+@section('content')
+<style>
+    .form-wrapper {
+        font-family: sans-serif;
+        max-width: 320px;
+        margin: 5px 5 0 5px;
+    }
+    .form-wrapper h2 {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .form-wrapper label {
+        display: block;
+        margin-top: 12px;
+        font-weight: bold;
+        font-size: 14px;
+    }
+    .form-wrapper input, 
+    .form-wrapper select {
+        width: 100%;
+        padding: 6px;
+        margin-top: 4px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 2px;
+    }
+    .form-wrapper .error {
+        color: #b91c1c;
+        font-size: 13px;
+        margin-top: 4px;
+    }
+    .form-wrapper .btn {
+        margin-top: 16px;
+        padding: 6px 16px;
+        background: #2563eb;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+</style>
+
+<div class="form-wrapper">
+    <h2>Tambah Buku</h2>
     <p><a href="{{ route('books.index') }}">&larr; Kembali ke daftar buku</a></p>
 
     <form action="{{ route('books.store') }}" method="POST">
@@ -58,8 +90,8 @@
         <select name="category_id" id="category_id">
             <option value="">-- Pilih Kategori --</option>
             @foreach ($categories as $category)
-                <option value="{{ $category['id'] }}" @selected(old('category_id') == $category['id'])>
-                    {{ $category['nama_kategori'] }}
+                <option value="{{ $category->id ?? $category['id'] }}" @selected(old('category_id') == ($category->id ?? $category['id']))>
+                    {{ $category->nama_kategori ?? $category->name ?? $category['nama_kategori'] }}
                 </option>
             @endforeach
         </select>
@@ -69,5 +101,5 @@
 
         <button type="submit" class="btn">Simpan</button>
     </form>
-</body>
-</html>
+</div>
+@endsection
