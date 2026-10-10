@@ -6,6 +6,7 @@ use App\Http\Requests\StoreCategoryRequest;
 use Illuminate\Http\Request;
 use App\Models\Category;
 
+
 class CategoryController extends Controller
 {
     public function index()
@@ -40,7 +41,7 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
 
-        $validated = $request->validate([
+        $validated = $request->validate([   
             'nama_kategori' => 'required|string|max:100',
             'deskripsi' => 'nullable|string',
         ]);
