@@ -51,6 +51,23 @@
             text-decoration: underline;
         }
 
+        nav .navbar-user { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            color: #cbd5e1; 
+            font-size: 14px; }
+        nav .btn-logout { 
+            background: none; 
+            border: 1px solid #cbd5e1; 
+            color: #cbd5e1; 
+            padding: 4px 10px; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            font-size: 14px; }
+        nav .btn-logout:hover { 
+            background: #1e40af; color: #fff; }
+
         /* Kontainer Utama */
         main {
             max-width: 900px;
@@ -173,10 +190,23 @@
         <a href="{{ url('/') }}" class="logo">📚 PERPUSTAKAAN DIGITAL KAMPUS</a>
         <div class="nav-links">
             <a href="{{ url('/books') }}">Buku</a>
-            <a href="{{ url('/categories') }}">Kategori</a>
+            @if(auth()->check() && auth()->user()->role !== 'petugas')
+                <a href="{{ url('/categories') }}">Kategori</a>
+            @endif
             <a href="{{ url('/members') }}">Anggota</a>
             <a href="{{ url('/loans') }}">Peminjaman</a>
+            <a href="{{ route('profile.show') }}">Profil</a>
         </div>
+
+        @auth
+            <div class="navbar-user">
+                <span>{{ auth()->user()->name }}</span>
+                <form action="{{ route('logout') }}" method="POST" style="display: inline; margin: 0;">
+                    @csrf
+                    <button type="submit" class="btn-logout">Logout</button>
+                </form>
+            </div>
+        @endauth
     </nav>
 
     <main>

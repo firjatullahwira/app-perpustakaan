@@ -11,7 +11,7 @@ class BookController extends Controller
 {
     public function index()
     {
-        $books = Book::all();
+        $books = Book::with('category')->paginate(10);
 
         return view('books.index', compact('books'));
     }
@@ -36,7 +36,7 @@ class BookController extends Controller
 
     public function show(string $id)
     {
-        // Ganti koleksi dummy dengan query database langsung
+        
         $book = Book::with('category')->findOrFail($id);
 
         return view('books.show', compact('book'));
