@@ -105,14 +105,18 @@
             font-weight: 600;
         }
 
-        .btn-primary { background-color: #1d4ed8; color: white; }
+        .btn-primary { background-color: #1d4ed8; 
+            color: white; }
         .btn-primary:hover { background-color: #1e40af; }
 
-        .btn-secondary { background-color: #6b7280; color: white; }
+        .btn-secondary { background-color: #6b7280; 
+            color: white; }
         .btn-secondary:hover { background-color: #4b5563; }
 
-        .btn-warning { background-color: #f59e0b; color: white; }
-        .btn-danger { background-color: #ef4444; color: white; }
+        .btn-warning { background-color: #f59e0b; 
+            color: white; }
+        .btn-danger { background-color: #ef4444; 
+            color: white; }
 
         .btn-sm {
             padding: 4px 8px;
@@ -181,6 +185,34 @@
             border-top: 1px solid #e5e7eb;
             font-size: 13px;
             color: #6b7280;
+        }
+
+        /* Badge Status Colors */
+        .badge-dikembalikan {
+            background-color: #d1e7dd;
+            color: #0f5132;
+            padding: 0.35em 0.65em;
+            font-size: 0.75em;
+            font-weight: 700;
+            border-radius: 0.375rem;
+        }
+
+        .badge-dipinjam {
+            background-color: #fff3cd;
+            color: #664d03;
+            padding: 0.35em 0.65em;
+            font-size: 0.75em;
+            font-weight: 700;
+            border-radius: 0.375rem;
+        }
+
+        .badge-terlambat {
+            background-color: #f8d7da;
+            color: #842029;
+            padding: 0.35em 0.65em;
+            font-size: 0.75em;
+            font-weight: 700;
+            border-radius: 0.375rem;
         }
     </style>
 </head>

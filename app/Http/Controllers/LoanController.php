@@ -94,6 +94,13 @@ class LoanController extends Controller
 
     public function kembalikan(string $id)
     {
-        return "LoanController@kembalikan, id: {$id}";
+        $loan = Loan::findOrFail($id);
+
+    $loan->update([
+        'status' => 'dikembalikan',
+        'tanggal_dikembalikan' => now()->toDateString(),
+    ]);
+
+    return redirect()->route('loans.index')->with('sukses', 'Buku berhasil dikembalikan!');
     }
 }

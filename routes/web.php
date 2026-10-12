@@ -33,5 +33,6 @@ Route::middleware([CheckAdminRole::class])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::resource('books', BookController::class);
     Route::resource('members', MemberController::class);
+    Route::patch('/loans/{id}/kembalikan', [LoanController::class, 'kembalikan'])->name('loans.kembalikan');
     Route::resource('loans', LoanController::class);
 });
